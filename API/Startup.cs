@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Contexts;
 using API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -47,6 +49,10 @@ namespace API
 
             //AddSingleton() objects are created once within the scope of the application's lifetime and shared across the entire application pool
             //services.AddSingleton()
+            var connectionString = Startup.Configuration["ConnectionString:SneakersDbConnectionString"];
+            services.AddDbContext<SneakersDbContext>(options =>
+                        options.UseSqlServer(connectionString)
+                   );
         }
 
         // This method gets called by the runtime. 
