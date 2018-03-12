@@ -1,0 +1,14 @@
+﻿using System.ComponentModel.DataAnnotations;
+namespace API.Models
+{
+    public class UpdatePlayerDto
+    {
+        [Required(ErrorMessage = "First Name Required")]
+        [MaxLength(100)]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Last Name Required")]
+        [MaxLength(100)]
+        public string LastName { get; set; }
+    }
+}
